@@ -10,6 +10,7 @@ export const ADD_DECK_SUCCESS = 'ADD_DECK_SUCCESS';
 export const FETCH_DECKS_SUCCESS = 'FETCH_DECKS_SUCCESS';
 export const SELECTED_DECK = 'SELECTED_DECK';
 export const UPDATE_DECK_SUCCESS = 'UPDATE_DECK_SUCCESS';
+export const RETURN_ADDED_DECK = 'RETURN_ADDED_DECK';
 
 
 export function addDeck (newDeck) {
@@ -26,6 +27,7 @@ export function addDeck (newDeck) {
             
             dispatch(indicateServerCommunicationAction(false));
             dispatch(addDeckSuccessAction(newDeck));
+            dispatch(returnAddedDeckAction(deck));
         })
         .catch((error) => {
             dispatch(indicateServerCommunicationAction(false));
@@ -39,6 +41,14 @@ export function addDeckSuccessAction(deck) {
     
     return {
         type: ADD_DECK_SUCCESS,
+        deck
+    };
+}
+
+export function returnAddedDeckAction(deck) {
+    
+    return {
+        type: RETURN_ADDED_DECK,
         deck
     };
 }

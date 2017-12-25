@@ -98,7 +98,7 @@ const SignedInNavigator = StackNavigator({
                 <Text 
                     style={{color: 'white'}}
                 >
-                    &lt; Decks
+                    &lt; Back
                 </Text>
             </TouchableOpacity>
         })

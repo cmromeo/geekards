@@ -26,7 +26,15 @@ class AddDeck extends Component  {
             return;
         }
         this.props.addDeck({ 'title': this.state.deck, 'cardsCount': 0 })
-        this.props.navigation.goBack();
+        //this.props.navigation.goBack();
+        
+    }
+
+    componentWillReceiveProps () {
+        if (this.props.deck){
+            console.log('received deck ', deck);
+            this.props.navigation.navigate('DeckDetail', {'deck': deck} );
+        }
     }
 
     renderSaveButton() {

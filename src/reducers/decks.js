@@ -9,6 +9,8 @@ export function decks (state = [], action) {
             return [action.deck, ...state.filter((oneDeck) => {
                 return oneDeck.key !== action.deck.key;
             })];
+        case 'RETURN_ADDED_DECK':
+            return action.deck;
         case 'UPDATE_DECK_SUCCESS':
             return [action.deck, ...state.filter((oneDeck) => {
                 return oneDeck.key !== action.deck.key;

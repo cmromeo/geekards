@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Button from '../common/Button';
 import { Text, StyleSheet, Image, View, TouchableOpacity } from 'react-native';
 import firebaseApp from '../../firebase';
+import {updateSelectedDeck} from '../../actions/decks';
+import { connect } from 'react-redux';
 
 class DeckDetail extends Component  {
 
@@ -18,7 +20,8 @@ class DeckDetail extends Component  {
             this.setState({deck: deck});
             
             //inform the parent component
-            this.props.navigation.state.params.deckListenerInDecks(deck);
+            this.props.updateSelectedDeck(deck);
+            //this.props.navigation.state.params.deckListenerInDecks(deck);
         });
     }    
     
@@ -142,5 +145,19 @@ const styles = StyleSheet.create({
     }
 });
 
-export default DeckDetail;
+function mapStateToProps (state) {
+    return {
+    }
+  }
+  
+  function mapDispatchToProps (dispatch) {
+    return {
+      updateSelectedDeck: (deck) => dispatch(updateSelectedDeck(deck))
+    }
+  }
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(DeckDetail);
 

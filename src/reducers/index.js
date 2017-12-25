@@ -9,7 +9,7 @@ const rootReducer =  combineReducers({
     cardSorterIndex,
     decks,
     cards,
-    selectedDeck
+    selectedDeck,
 });
 
 export default rootReducer;
