@@ -61,6 +61,27 @@ This will start the process of "ejecting" from Create React Native App's build s
 
 **Warning:** Running eject is a permanent action (aside from whatever version control system you use). An ejected app will require you to have an [Xcode and/or Android Studio environment](https://facebook.github.io/react-native/docs/getting-started.html) set up.
 
+## Licensing
+
+To the extent possible under law, Romeo Flauta has waived all copyright and related or neighboring rights to this work.
+
+## Contributions
+
+Contributions are always welcome. 
+
+Please ensure your pull request adheres to the following guidelines:
+
+* Alphabetize your entry.
+* Search previous suggestions before making a new one, as yours may be a duplicate.
+* Make an individual pull request for each suggestion.
+* New categories, or improvements to the existing categorization are welcome.
+* Keep descriptions short and simple, but descriptive.
+* Start the description with a capital and end with a full stop/period.
+* Check your spelling and grammar.
+* Make sure your text editor is set to remove trailing whitespace.
+
+Thank you for your suggestions!
+
 
 
 
