@@ -102,14 +102,16 @@ const styles = StyleSheet.create({
     }
 });
 
-function mapStateToProps (state) {
-  return {
-    decks: state.decks,
-    user: state.user,
-    server_communication_error: state.server_communication_error,
-    isLoading: state.isLoading,
-  }
-}
+const mapStateToProps = ({ decks, user, server_communication_error, isLoading }) => ({ decks, user, server_communication_error, isLoading });
+
+// function mapStateToProps (state) {
+//   return {
+//     decks: state.decks,
+//     user: state.user,
+//     server_communication_error: state.server_communication_error,
+//     isLoading: state.isLoading,
+//   }
+// }
 
 function mapDispatchToProps (dispatch) {
   return {

@@ -362,14 +362,8 @@ function mapStateToProps (state) {
   }
 }
 
-function mapDispatchToProps (dispatch) {
-  return {
-    fetchCards: (deckId) => dispatch(fetchCards(deckId)),
-  }
-}
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  {fetchCards}
 )(Card);
 
