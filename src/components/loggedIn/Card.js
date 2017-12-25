@@ -172,7 +172,25 @@ class Card extends Component  {
                             onPress={() => this.props.navigation.goBack()} 
                         >
                             <Text style={ styles.buttonTextStyle } >
-                                Back for More
+                                Back to Deck
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                        <TouchableOpacity 
+                            style = { styles.peekButtonStyle }
+                            onPress={() => {
+                                this.setState({
+                                    activeCardIndex: 0,
+                                    correctAnswers: 0,
+                                    showScore: false,
+                                    correct: false,
+                                    isFlipped: false
+                                });
+                            }} 
+                        >
+                            <Text style={ styles.buttonTextStyle } >
+                                Restart Quiz
                             </Text>
                         </TouchableOpacity>
                     </View>
