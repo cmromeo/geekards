@@ -6,11 +6,10 @@ export function decks (state = [], action) {
         case 'FETCH_DECKS_SUCCESS':
             return action.decks;
         case 'ADD_DECK_SUCCESS':
+            console.log('ADD_DECK_SUCCESS reducer', action.deck);
             return [action.deck, ...state.filter((oneDeck) => {
                 return oneDeck.key !== action.deck.key;
             })];
-        case 'RETURN_ADDED_DECK':
-            return action.deck;
         case 'UPDATE_DECK_SUCCESS':
             return [action.deck, ...state.filter((oneDeck) => {
                 return oneDeck.key !== action.deck.key;
@@ -45,15 +44,9 @@ export function selectedDeck (state = null, action) {
             return action.deck;
         case 'UPDATE_SELECTED_DECK':
             return action.deck;
-        default:
-            return state;
-    }
-}
-
-export function decksQuery (state = null, action) {
-    switch (action.type) {
-        case 'QUERY_DECKS':
-            return action.query;
+        case 'RETURN_ADDED_DECK':
+            console.log('return added deck: ', action.deck);
+            return action.deck;
         default:
             return state;
     }

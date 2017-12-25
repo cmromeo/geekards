@@ -14,31 +14,31 @@ export const RETURN_ADDED_DECK = 'RETURN_ADDED_DECK';
 
 
 export function addDeck (newDeck) {
-    const decksListRef = firebaseApp.database().ref(`decks/${firebaseApp.auth().currentUser.uid}`);
+    // const decksListRef = firebaseApp.database().ref(`decks/${firebaseApp.auth().currentUser.uid}`);
     
-    const newDeckRef = decksListRef.push();
+    // const newDeckRef = decksListRef.push();
     
     return (dispatch) => {
-        dispatch(indicateServerCommunicationAction(true));
+        //dispatch(indicateServerCommunicationAction(true));
         
-        newDeckRef.set(newDeck)
-        .then(() => {
-            newDeck['key'] = newDeckRef.key
+        //newDeckRef.set(newDeck)
+        // .then(() => {
+        //     newDeck['key'] = newDeckRef.key
             
-            dispatch(indicateServerCommunicationAction(false));
-            dispatch(addDeckSuccessAction(newDeck));
-            dispatch(returnAddedDeckAction(deck));
-        })
-        .catch((error) => {
-            dispatch(indicateServerCommunicationAction(false));
-            dispatch(errorCommunicatingWithServerAction(error, "Error while adding a deck."))
-            }
-        );
+        //     dispatch(indicateServerCommunicationAction(false));
+        //     dispatch(addDeckSuccessAction(newDeck));
+        //     dispatch(returnAddedDeckAction(newDeck));
+        // })
+        // .catch((error) => {
+        //     dispatch(indicateServerCommunicationAction(false));
+        //     dispatch(errorCommunicatingWithServerAction(error, "Error while adding a deck."))
+        //     }
+        // );
     };
 }
 
 export function addDeckSuccessAction(deck) {
-    
+    console.log('addDeckSuccessAction ', deck);
     return {
         type: ADD_DECK_SUCCESS,
         deck
@@ -46,7 +46,7 @@ export function addDeckSuccessAction(deck) {
 }
 
 export function returnAddedDeckAction(deck) {
-    
+    console.log('returnAddedDeckAction  ', deck);
     return {
         type: RETURN_ADDED_DECK,
         deck

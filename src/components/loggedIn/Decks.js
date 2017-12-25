@@ -10,9 +10,9 @@ import {updateSelectedDeck} from '../../actions/decks';
 
 class Decks extends Component  {
 
-    deckListenerInDecks  = (deck) => {
-        this.props.updateSelectedDeck(deck);
-    }   
+    // deckListenerInDecks  = (deck) => {
+    //     this.props.updateSelectedDeck(deck);
+    // }   
 
     componentWillMount () {
         console.ignoredYellowBox = ['Setting a timer'];
@@ -31,11 +31,11 @@ class Decks extends Component  {
                 </Text>
                 <FlatList
                     data = { this.props.decks }
-                    keyExtractor = {(deck) => deck.key}
+                    keyExtractor = {(deck) => {return deck.key}}
                     ItemSeparatorComponent = {FlatListItemSeparator}
                     renderItem = { ({item}) => { 
                         return (
-                            <TouchableOpacity onPress={() => navigate("DeckDetail", {'deck': item, deckListenerInDecks: this.deckListenerInDecks})}>
+                            <TouchableOpacity onPress={() => navigate("DeckDetail", {'deck': item})}>
                                 <View style={styles.row}>
                                     <View style={{ 
                                         alignItems: 'center',

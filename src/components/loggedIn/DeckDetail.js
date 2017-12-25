@@ -10,8 +10,8 @@ class DeckDetail extends Component  {
     state = {
         deck: this.props.navigation.state.params.deck
     }
-
-    turnOnDeckListener  = (deck) => {
+    
+    turnOnDeckCardsCountListener  = (deck) => {
         const deckRef = firebaseApp.database().ref(`decks/${firebaseApp.auth().currentUser.uid}/${deck.key}/cardsCount`);
         deckRef.on('value', (snapshot) => {
             deck.cardsCount = snapshot.val();
@@ -27,17 +27,15 @@ class DeckDetail extends Component  {
     
 
     componentWillMount() {
-        //let deck = {'key': this.props.navigation.state.params.key, 'title': this.props.navigation.state.params.title, 'cardsCount': this.props.navigation.state.params.cardsCount };
-        //let deck = {'key': this.props.navigation.state.params.key, 'title': this.props.navigation.state.params.title, 'cardsCount': this.props.navigation.state.params.cardsCount };
-        //this.setState({deck: deck});
-
-        this.turnOnDeckListener(this.state.deck);
+        this.turnOnDeckCardsCountListener(this.state.deck);
     }
 
     render () {
         console.log('render func');
 
         let { deck } = this.state;
+
+         console.log('inside render of deckdetail, deck is: ', deck);
 
         const { navigate } = this.props.navigation;
         

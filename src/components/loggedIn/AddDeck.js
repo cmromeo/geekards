@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import {Text, StyleSheet, Image, View } from 'react-native';
 import Spinner from '../common/Spinner';
 import { connect } from 'react-redux'
-import {addDeck} from '../../actions/decks';
+
 import Section from '../common/Section';
 import Input from '../common/Input';
 import Button from '../common/Button';
+import firebaseApp from '../../firebase';
+import {indicateServerCommunicationAction, errorCommunicatingWithServerAction} from '../../actions/common';
+import {addDeckSuccessAction, returnAddedDeckAction} from '../../actions/decks';
 
 class AddDeck extends Component  {
 
@@ -25,16 +28,26 @@ class AddDeck extends Component  {
             this.setState({validationError: 'Please enter the title of the Deck.'});
             return;
         }
-        this.props.addDeck({ 'title': this.state.deck, 'cardsCount': 0 })
-        //this.props.navigation.goBack();
-        
-    }
+        this.props.indicateServerCommunicationAction(true);
 
-    componentWillReceiveProps () {
-        if (this.props.deck){
-            console.log('received deck ', deck);
-            this.props.navigation.navigate('DeckDetail', {'deck': deck} );
-        }
+        const decksListRef = firebaseApp.database().ref(`decks/${firebaseApp.auth().currentUser.uid}`);
+        const newDeckRef = decksListRef.push();
+        const newDeck = { 'title': this.state.deck, 'cardsCount': 0, 'key': newDeckRef.key };
+        newDeckRef.set(newDeck)
+        .then(() => {          
+            
+            this.props.indicateServerCommunicationAction(false);
+            this.props.addDeckSuccessAction(newDeck);
+            this.props.returnAddedDeckAction(newDeck);
+            
+            this.props.navigation.navigate("DeckDetail", {'deck': newDeck});
+
+        })
+        .catch((error) => {
+            dispatch(indicateServerCommunicationAction(false));
+            dispatch(errorCommunicatingWithServerAction(error, "Error while adding a deck."))
+            }
+        );
     }
 
     renderSaveButton() {
@@ -49,6 +62,10 @@ class AddDeck extends Component  {
     }
 
     render () {
+
+        if (this.props.deck){
+            console.log('deck is now in render ', this.props.deck);
+        }
         
         return (
             <View >
@@ -92,8 +109,6 @@ const styles = StyleSheet.create({
 });
 
 
-
-
 function mapStateToProps (state) {
   return {
     deck: state.deck,
@@ -105,6 +120,12 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     addDeck: (deck) => dispatch(addDeck(deck)),
+    indicateServerCommunicationAction: (isLoading) => dispatch(indicateServerCommunicationAction(isLoading)),
+    errorCommunicatingWithServerAction: (error, message) => dispatch(errorCommunicatingWithServerAction(error, message)),
+    addDeckSuccessAction: (deck) => dispatch(addDeckSuccessAction(deck)),
+    returnAddedDeckAction: (deck) => dispatch(returnAddedDeckAction(deck)),
+    
+
   }
 }
 
