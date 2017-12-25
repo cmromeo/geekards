@@ -40,7 +40,7 @@ class AddDeck extends Component  {
             this.props.addDeckSuccessAction(newDeck);
             this.props.returnAddedDeckAction(newDeck);
             
-            this.props.navigation.navigate("DeckDetail", {'deck': newDeck});
+            this.props.navigation.navigate("DeckDetail", {'deck': newDeck, 'go_back_key': this.props.navigation.state.key});
 
         })
         .catch((error) => {

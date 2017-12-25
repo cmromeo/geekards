@@ -93,7 +93,13 @@ const SignedInNavigator = StackNavigator({
         headerLeft: 
             <TouchableOpacity 
                 style={{ paddingLeft: 20, paddingTop: 20, height: 44 }}
-                onPress={() => navigation.goBack()}
+                onPress={() => {
+                    console.log('screenProps  ', );
+                    if (navigation.state.params && navigation.state.params.onBackPress) {
+                        console.log('on back press tapped');
+                        navigation.state.params.onBackPress();
+                    }
+                }}
             >
                 <Text 
                     style={{color: 'white'}}

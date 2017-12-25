@@ -10,6 +10,10 @@ class DeckDetail extends Component  {
     state = {
         deck: this.props.navigation.state.params.deck
     }
+
+    handleBackPress = () => {
+        this.props.navigation.goBack(this.props.navigation.state.params.go_back_key);
+    }
     
     turnOnDeckCardsCountListener  = (deck) => {
         const deckRef = firebaseApp.database().ref(`decks/${firebaseApp.auth().currentUser.uid}/${deck.key}/cardsCount`);
@@ -28,6 +32,9 @@ class DeckDetail extends Component  {
 
     componentWillMount() {
         this.turnOnDeckCardsCountListener(this.state.deck);
+        this.props.navigation.setParams({
+            onBackPress: this.handleBackPress
+        });
     }
 
     render () {
