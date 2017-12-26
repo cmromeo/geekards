@@ -6,6 +6,7 @@ import {addCard} from '../../actions/cards';
 import Section from '../common/Section';
 import Input from '../common/Input';
 import Button from '../common/Button';
+import DismissKeyboard from 'dismissKeyboard';
 
 class AddCard extends Component  {
 
@@ -60,7 +61,7 @@ class AddCard extends Component  {
                         flexDirection: 'row', 
                         justifyContent: 'center',
                         alignItems: 'center',
-                        paddingBottom: 16
+                        paddingBottom: 12
                 }}>
                     <Text style={styles.boolLabelAnswer} >False</Text>
                     <Switch
@@ -76,7 +77,7 @@ class AddCard extends Component  {
                         flexDirection: 'row', 
                         justifyContent: 'center',
                         alignItems: 'center',
-                        paddingBottom: 16
+                        paddingBottom: 12
                 }}>
                     <Text style={styles.boolLabelNotAnswer} >False</Text>
                     <Switch
@@ -92,14 +93,14 @@ class AddCard extends Component  {
     render () {
         
         return (
-            <View style={{ paddingRight: 8, paddingLeft: 8 }}>
-                <View style={{marginTop: 30, marginBottom: 20, alignItems: 'center',
+            <View behavior={'height'} style={{ paddingRight: 8, paddingLeft: 8 }}>
+                <View style={{marginTop: 10, marginBottom: 10, alignItems: 'center',
                     justifyContent: 'center',}} > 
                     <Image source={require('../../icons/redyellowcards.png')} />
                 </View>
                 <View 
                     style={{
-                        marginTop: 40, 
+                        marginTop: 10, 
                         marginBottom: 20, 
                         justifyContent: 'center',
                         alignContent: 'center'
@@ -112,7 +113,7 @@ class AddCard extends Component  {
                     </Text> 
                     <TextInput
                         multiline={true}
-                        numberOfLines={4}
+                        numberOfLines={3}
                         underlineColorAndroid='transparent'
                         placeholder={'Enter a true or false question.'}
                         autoCorrect={false}
